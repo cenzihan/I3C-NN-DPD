@@ -36,8 +36,9 @@ config = dict(
     neurons=12,
     isDPD = True,
     activateF="nn.Tanh()",
-    DatasetName = '_DPDtrain_220k_M5_Len1600_MCS9_CBW80_fs480m_'
+    DatasetName = '_test_29k_M5_Len1600_MCS9_CBW40_fs246m_'
     # DatasetName= '0dB_Len200_MCS3_CBW20_fs100_M5_L208k_PAtrain'
+ 
 )
 
 if WANDB_MODE != 'disabled':
@@ -86,8 +87,10 @@ class RVTDCNN(nn.Module):
 
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self):
-        input_data = scio.loadmat('./data_xzr/%s/input_data_RVTDCNN%s.mat'%(DatasetName,DatasetName))
-        labels_data = scio.loadmat('./data_xzr/%s/label_data_NN%s.mat'%(DatasetName,DatasetName))
+        input_path = f'./data_xzr/input_data_RVTDCNN{DatasetName}.mat'
+        label_path = f'./data_xzr/label_data_NN{DatasetName}.mat'
+        input_data = scio.loadmat(input_path)
+        labels_data = scio.loadmat(label_path)
         input_data_array = input_data['input_data_RVTDCNN']
         labels_data_array = labels_data['label_data_NN']
         self.data = torch.FloatTensor(input_data_array).permute(2, 0, 1).to(device)

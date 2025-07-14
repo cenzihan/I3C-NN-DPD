@@ -73,8 +73,10 @@ class ARVTDNN(nn.Module):
 
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self):
-        input_data = scio.loadmat('./data_xzr/%s/input_data_ARVTDNN%s.mat'%(DatasetName,DatasetName))
-        labels_data = scio.loadmat('./data_xzr/%s/label_data_NN%s.mat'%(DatasetName,DatasetName))
+        input_path = f'./data_xzr/input_data_ARVTDNN{DatasetName}.mat'
+        label_path = f'./data_xzr/label_data_NN{DatasetName}.mat'
+        input_data = scio.loadmat(input_path)
+        labels_data = scio.loadmat(label_path)
         input_data_array = input_data['input_data_ARVTDNN']
         labels_data_array = labels_data['label_data_NN']
         self.data = torch.FloatTensor(input_data_array).permute(1, 0).to(device)

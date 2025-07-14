@@ -1,0 +1,13 @@
+{"time":"2025-07-14T08:20:22.264279071+01:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-14T08:20:22.396026613+01:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-07-14T08:20:22.396176179+01:00","level":"INFO","msg":"stream: created new stream","id":"qvvflycc"}
+{"time":"2025-07-14T08:20:22.396211886+01:00","level":"INFO","msg":"stream: started","id":"qvvflycc"}
+{"time":"2025-07-14T08:20:22.396261541+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:22.396269407+01:00","level":"INFO","msg":"handler: started","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:22.396307407+01:00","level":"INFO","msg":"sender: started","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:22.397364945+01:00","level":"WARN","msg":"runupserter: server does not expand metric globs but the x_server_side_expand_glob_metrics setting is set; ignoring"}
+{"time":"2025-07-14T08:20:23.407873611+01:00","level":"INFO","msg":"stream: closing","id":"qvvflycc"}
+{"time":"2025-07-14T08:20:23.408127749+01:00","level":"INFO","msg":"handler: closed","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:23.408164503+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:23.408236356+01:00","level":"INFO","msg":"sender: closed","stream_id":"qvvflycc"}
+{"time":"2025-07-14T08:20:23.408256548+01:00","level":"INFO","msg":"stream: closed","id":"qvvflycc"}
