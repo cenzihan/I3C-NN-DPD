@@ -1,6 +1,6 @@
 # Ignore large data, model, and prediction files
-/data_xzr/
-/coefs/
+# Directories like /data_xzr, /coefs, and /Predictions are now managed by
+# their own .gitignore files to keep the directory structure.
 
 
 # Ignore Python cache files
@@ -8,7 +8,7 @@ __pycache__/
 *.pyc
 
 # Ignore environment-specific files and logs
-/wandb/
+
 
 # Ignore IDE-specific folders
 .vscode/
