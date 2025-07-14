@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Set the Python file name
-python_file="DPDencoder.py"
+#python_file="DPDtransformer.py"
+ python_file="ARVTDNN.py"
 
 # Set the variable name to monitor
 variable_name="NMSE"
@@ -15,7 +16,7 @@ echo "Test on $python_file"
 for ((i=1;i<=$count;i++));
 do
   # Run the Python file and save the output to a variable
-  output=$(CUDA_VISIBLE_DEVICES=3 python $python_file)
+  output=$(CUDA_VISIBLE_DEVICES=2 python src/ARVTDNN.py 980480)
 
   # Extract the value of the monitored variable from the output
   variable_value=$(echo "$output" | grep "$variable_name" | awk '{print $NF}')

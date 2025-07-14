@@ -21,7 +21,7 @@ for ((j=1;j<=1;j++)); do
 
     # Run the Python file and save the output to a variable
 
-    output=$(CUDA_VISIBLE_DEVICES=3 python $python_file $i 'Leaky ReLU' $neuronsN)
+    output=$(CUDA_VISIBLE_DEVICES=3 python src/RVTDSAN_X.py 980480 LeakyReLU 6)
     # Extract the value of the monitored variable from the output
     variable_value=$(echo "$output" | grep "$variable_name" | awk '{print $NF}')
 

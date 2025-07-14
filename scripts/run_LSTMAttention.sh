@@ -21,7 +21,7 @@ for ((j=1;j<=1;j++)); do
 
     # Run the Python file and save the output to a variable
 
-    output=$(CUDA_VISIBLE_DEVICES=3 python $python_file $i $neuronsN)
+    output=$(CUDA_VISIBLE_DEVICES=3 python src/LSTMAttention.py 980480)
     # Extract the value of the monitored variable from the output
     variable_value=$(echo "$output" | grep "$variable_name" | awk '{print $NF}')
 

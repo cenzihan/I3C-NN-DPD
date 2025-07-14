@@ -11,14 +11,15 @@
 ├── coefs/                # 存放训练好的模型权重 (.pth 文件)
 ├── data_xzr/             # 存放所有的 .mat 格式的原始数据
 ├── env/                  # 存放 Conda 环境配置文件和安装脚本
-│   ├── environment.yml
-│   └── setup_conda.sh
 ├── Predictions/          # 存放 DPD.py 推理后生成的预测结果 (.mat 文件)
-├── ARVTDNN.py            # ARVTDNN 模型的训练脚本
-├── RVTDCNN.py            # RVTDCNN 模型的训练脚本
-├── RVTDSAN.py            # RVTDSAN 模型的训练脚本
-├── DPD.py                # 加载预训练模型进行推理的脚本
-├── enable_wandb.py       # 全局开关，用于启用或禁用 Weights & Biases
+├── scripts/              # 存放可执行脚本 (.sh 文件)
+├── src/                  # 存放所有的 Python 源代码 (.py 文件)
+│   ├── ARVTDNN.py
+│   ├── RVTDCNN.py
+│   ├── RVTDSAN.py
+│   ├── DPD.py
+│   ├── enable_wandb.py
+│   └── ...
 └── README.md             # 本文档
 ```
 
@@ -59,7 +60,7 @@
 
 ### 1. 配置 Weights & Biases (wandb)
 
-在项目根目录有一个 `enable_wandb.py` 文件，用于控制如何集成 [Weights & Biases](https://wandb.ai/) 进行实验跟踪。打开此文件，修改 `WANDB_MODE` 变量来选择一种模式：
+在项目/src目录有一个 `enable_wandb.py` 文件，用于控制如何集成 [Weights & Biases](https://wandb.ai/) 进行实验跟踪。打开此文件，修改 `WANDB_MODE` 变量来选择一种模式：
 
 -   **`WANDB_MODE = "offline"`** (推荐/默认)
     此模式用于网络连接不稳定或受限的环境。它会将所有实验数据先保存在本地的 `wandb` 文件夹中，不会尝试实时上传。您可以在稍后网络良好的情况下手动同步数据。
@@ -75,10 +76,10 @@
 
 ### 2. 训练模型
 
-您可以从多个训练脚本中选择一个来开始训练。例如，要训练 `RVTDSAN` 模型：
+您可以从多个训练脚本中选择一个来开始训练。例如，要训练 `RVTDSAN` 模型，请从项目**根目录**运行：
 
 ```bash
-python RVTDSAN.py
+python src/RVTDSAN.py
 ```
 
 训练过程中的损失等信息会打印在终端上。训练完成后，模型权重会自动保存在 `./coefs/` 目录下。
@@ -87,10 +88,10 @@ python RVTDSAN.py
 
 当您拥有一个训练好的模型后，可以使用 `DPD.py` 脚本来加载它并对测试数据进行预测。
 
-1.  **修改 `DPD.py`**：打开该文件，根据您训练好的模型和想测试的数据集，修改文件顶部的 `Modelname`, `Dataname`, 和 `PAname` 变量。
+1.  **修改 `src/DPD.py`**：打开该文件，根据您训练好的模型和想测试的数据集，修改文件顶部的 `Modelname`, `Dataname`, 和 `PAname` 变量。
 2.  **运行推理脚本**：
     ```bash
-    python DPD.py
+    python src/DPD.py
     ```
     预测结果将会被保存为 `.mat` 文件到 `./Predictions/` 目录下。
 
@@ -98,10 +99,10 @@ python RVTDSAN.py
 
 为了获得更可靠的模型性能，您可以使用 `run2.sh` 脚本来多次运行同一个训练脚本并计算性能指标的平均值。
 
-1.  **修改 `run2.sh`**：打开该文件，修改 `python_file` 变量为您想要测试的脚本名称。
+1.  **修改 `scripts/run2.sh`**：打开该文件，修改 `python_file` 变量为您想要测试的脚本名称 (注意需要包含 `src/` 前缀)。
 2.  **运行脚本**：
     ```bash
-    bash run2.sh
+    bash scripts/run2.sh
     ```
 
 ### 5. 同步离线数据
@@ -127,14 +128,15 @@ This project aims to implement Digital Pre-Distortion (DPD) for Power Amplifiers
 ├── coefs/                # Stores trained model weights (.pth files)
 ├── data_xzr/             # Stores all raw data in .mat format
 ├── env/                  # Contains Conda environment configuration and setup script
-│   ├── environment.yml
-│   └── setup_conda.sh
 ├── Predictions/          # Stores prediction results from DPD.py inference (.mat files)
-├── ARVTDNN.py            # Training script for the ARVTDNN model
-├── RVTDCNN.py            # Training script for the RVTDCNN model
-├── RVTDSAN.py            # Training script for the RVTDSAN model
-├── DPD.py                # Script to load a pre-trained model for inference
-├── enable_wandb.py       # Global switch to enable or disable Weights & Biases
+├── scripts/              # Contains executable scripts (.sh files)
+├── src/                  # Contains all Python source code (.py files)
+│   ├── ARVTDNN.py
+│   ├── RVTDCNN.py
+│   ├── RVTDSAN.py
+│   ├── DPD.py
+│   ├── enable_wandb.py
+│   └── ...
 └── README.md             # This document
 ```
 
@@ -191,10 +193,10 @@ There is a central configuration file `enable_wandb.py` in the project root to c
 
 ### 2. Train a Model
 
-You can choose from several training scripts to start. For example, to train the `RVTDSAN` model:
+You can choose from several training scripts to start. For example, to train the `RVTDSAN` model, run from the project **root** directory:
 
 ```bash
-python RVTDSAN.py
+python src/RVTDSAN.py
 ```
 
 Training progress, such as loss, will be printed to the console. Upon completion, the model weights will be automatically saved to the `./coefs/` directory.
@@ -203,10 +205,10 @@ Training progress, such as loss, will be printed to the console. Upon completion
 
 Once you have a trained model, you can use the `DPD.py` script to load it and make predictions on test data.
 
-1.  **Modify `DPD.py`**: Open the file and update the `Modelname`, `Dataname`, and `PAname` variables at the top to match your trained model and the desired test dataset.
+1.  **Modify `src/DPD.py`**: Open the file and update the `Modelname`, `Dataname`, and `PAname` variables at the top to match your trained model and the desired test dataset.
 2.  **Run the inference script**:
     ```bash
-    python DPD.py
+    python src/DPD.py
     ```
     The prediction results will be saved as a `.mat` file in the `./Predictions/` directory.
 
@@ -214,10 +216,10 @@ Once you have a trained model, you can use the `DPD.py` script to load it and ma
 
 For a more robust performance evaluation, you can use the `run2.sh` script to run a training script multiple times and average the performance metrics.
 
-1.  **Modify `run2.sh`**: Open the file and set the `python_file` variable to the name of the script you want to test.
+1.  **Modify `scripts/run2.sh`**: Open the file and set the `python_file` variable to the name of the script you want to test (note that it needs the `src/` prefix).
 2.  **Run the script**:
     ```bash
-    bash run2.sh
+    bash scripts/run2.sh
     ```
 
 ### 5. Sync Offline Data
