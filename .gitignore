@@ -1,0 +1,15 @@
+# Ignore large data, model, and prediction files
+/data_xzr/
+/coefs/
+
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore environment-specific files and logs
+/wandb/
+
+# Ignore IDE-specific folders
+.vscode/
+.idea/ 

@@ -1,0 +1,35 @@
+name: nn-dpd-env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  # --- Core Setup ---
+  - python=3.9
+  - pip
+
+  # --- PyTorch for GPU ---
+  # Installs PyTorch, torchvision, and the necessary CUDA toolkit version
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+
+  # --- Core Scientific Libraries ---
+  - numpy
+  - scipy
+  - matplotlib
+
+  # --- Experiment Tools & Model Helpers ---
+  # These are installed via pip for better compatibility with mirrors
+  - pip:
+    # Experiment Tracking
+    - wandb
+    - nni
+    # Model Complexity Analysis
+    - thop
+    - ptflops
+    # Transformer/Attention Helpers
+    - einops
+    - linformer-pytorch 
