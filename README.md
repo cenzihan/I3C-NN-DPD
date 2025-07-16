@@ -113,31 +113,4 @@ wandb sync --sync-all
 ```
 
 ---
----
 
-# NN-DPD Project Documentation
-
-This project aims to implement Digital Pre-Distortion (DPD) for Power Amplifiers (PA) using various deep learning models, including **ARVTDNN** (Fully-Connected Network), **RVTDCNN** (Convolutional Network), and **RVTDSAN** (Transformer/Self-Attention Network).
-
----
-
-## Directory Structure
-
-```
-.
-├── coefs/                # Stores trained model weights (.pth files)
-├── data_xzr/             # Stores all raw data in .mat format
-├── env/                  # Contains Conda environment configuration and setup script
-├── Predictions/          # Stores prediction results from DPD.py inference (.mat files)
-├── scripts/              # Contains executable scripts (.sh files)
-├── src/                  # Contains all Python source code (.py files)
-│   ├── ARVTDNN.py
-│   ├── RVTDCNN.py
-│   ├── RVTDSAN.py
-│   ├── DPD.py
-│   ├── enable_wandb.py
-│   └── ...
-└── README.md             # This document
-```
-
----
